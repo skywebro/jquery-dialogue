@@ -9,15 +9,21 @@
     $.dialogue = function(url, options) {
         var id = "dialogue-" + guid();
         var options = $.extend({
+            autoResize: true,
+            width: 'auto',
+            height: 'auto',
             position: { my: "center", at: "center", of: window },
             modal: true,
-            autoResize: true,
-            width: "auto",
             dialogClass: 'ui-dialogue',
             title: 'Ajax Dialog',
-            data: {},
+            data: '',
             open: function(event, ui) {
-                $(this).load(url, options.data, options.complete);
+                $(this).load(url, options.data, function(response, status, xhr) {
+                    setTimeout(function() {
+                        dialog.dialog('option', 'position', options.position);
+                    }, 100);
+                    options.complete.call($(this), response, status, xhr);
+                });
             },
             close: function(event, ui) {
                 $(this).remove();
