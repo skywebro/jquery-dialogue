@@ -1,0 +1,38 @@
+﻿{
+	"name": "ui.dialogue",
+	"title": "jQuery UI Ajax Dialog",
+	"description": "Displays customizable dialog windows with content fetched using Ajax",
+	"keywords": [
+		"ajax",
+		"ui",
+		"dialog",
+		"modal",
+		"alert",
+		"popup"
+	],
+	"version": "0.1.0",
+	"author": {
+		"name": "skyweb.ro dev",
+		"url": "http://skyweb.ro/"
+	},
+	"maintainers": [{
+		"name": "Andi Trînculescu",
+		"email": "andi@skyweb.ro",
+		"url": "http://skyweb.ro/"
+	}],
+	"dependencies": {
+		"jquery": ">=1.6",
+		"ui.core": "1.10.0",
+		"ui.widget": "1.10.0",
+		"ui.button": "1.10.0",
+		"ui.draggable": "1.10.0",
+		"ui.position": "1.10.0",
+		"ui.resizable": "1.10.0",
+		"ui.dialog": "1.10.0"
+	},
+	"licenses": [{
+		"type": "MIT",
+		"url": "https://raw.github.com/jquery/jquery/master/MIT-LICENSE.txt"
+	}],
+	"category": "widget"
+}
