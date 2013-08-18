@@ -15,11 +15,15 @@
             width: "auto",
             dialogClass: 'ui-dialogue',
             title: 'Ajax Dialog',
+            data: {},
             open: function(event, ui) {
-                $(this).load(url);
+                $(this).load(url, options.data, options.complete);
             },
             close: function(event, ui) {
                 $(this).remove();
+            },
+            complete: function(response, status, xhr) {
+                /* A callback function that is executed when the request completes. */
             }
         }, options);
         var dialog = $("<div id='" + id + "' class='" + (options.dialogClass || 'ui-dialogue') + "-content' style='display:none;'></div>").appendTo('body').dialog(options);
