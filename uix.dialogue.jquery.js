@@ -3,16 +3,16 @@
         var s4 = function() {
             return (((1 + Math.random()) * 0x10000) | 0).toString(16).substring(1);
         };
-        return (s4() + s4() + "-" + s4() + "-" + s4() + "-" + s4() + "-" + s4() + s4() + s4());
+        return (s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4());
     };
 
     $.dialogue = function(url, options) {
         var options = $.extend({
-            id: "dialogue-" + guid(),
+            id: 'dialogue-' + guid(),
             autoResize: true,
             width: 'auto',
             height: 'auto',
-            position: { my: "center", at: "center", of: window },
+            position: { my: 'center', at: 'center', of: window },
             modal: true,
             dialogClass: 'uix-dialogue',
             title: 'Ajax Dialog',
@@ -27,12 +27,10 @@
             }
         }, options);
 
-        var dialog = null;
-        var content = $("<div id='" + options.id + "' class='" + options.dialogClass + "-content' style='display:none;'></div>").appendTo('body');
-
+        var content = $('<div id="' + options.id + '" class="' + options.dialogClass + '-content" style="display:none;"></div>').appendTo('body');
         content.load(url, options.data, function(response, status, xhr) {
             setTimeout(function() {
-                dialog = content.dialog(options);
+				content.dialog(options);
             }, 100);
             options.complete.call($(this), response, status, xhr);
         });
