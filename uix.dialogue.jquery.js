@@ -18,12 +18,6 @@
             title: 'Ajax Dialog',
             data: '',
             open: function(event, ui) {
-                $(this).load(url, options.data, function(response, status, xhr) {
-                    setTimeout(function() {
-                        dialog.dialog('option', 'position', options.position);
-                    }, 100);
-                    options.complete.call($(this), response, status, xhr);
-                });
             },
             close: function(event, ui) {
                 $(this).remove();
@@ -32,7 +26,16 @@
                 /* A callback function that is executed when the request completes. */
             }
         }, options);
-        var dialog = $("<div id='" + id + "' class='" + (options.dialogClass || 'ui-dialogue') + "-content' style='display:none;'></div>").appendTo('body').dialog(options);
+
+        var dialog = null;
+        var content = $("<div id='" + id + "' class='" + (options.dialogClass || 'ui-dialogue') + "-content' style='display:none;'></div>").appendTo('body');
+
+        content.load(url, options.data, function(response, status, xhr) {
+            setTimeout(function() {
+                dialog = content.dialog(options);
+            }, 100);
+            options.complete.call($(this), response, status, xhr);
+        });
 
         return dialog;
     };
