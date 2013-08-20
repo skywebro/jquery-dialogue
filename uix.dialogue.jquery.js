@@ -7,14 +7,14 @@
     };
 
     $.dialogue = function(url, options) {
-        var id = options.id || "dialogue-" + guid();
         var options = $.extend({
+            id: "dialogue-" + guid(),
             autoResize: true,
             width: 'auto',
             height: 'auto',
             position: { my: "center", at: "center", of: window },
             modal: true,
-            dialogClass: 'ui-dialogue',
+            dialogClass: 'ui-dialogue-content',
             title: 'Ajax Dialog',
             data: '',
             open: function(event, ui) {
@@ -28,7 +28,7 @@
         }, options);
 
         var dialog = null;
-        var content = $("<div id='" + id + "' class='" + (options.dialogClass || 'ui-dialogue') + "-content' style='display:none;'></div>").appendTo('body');
+        var content = $("<div id='" + options.id + "' class='" + options.dialogClass + "' style='display:none;'></div>").appendTo('body');
 
         content.load(url, options.data, function(response, status, xhr) {
             setTimeout(function() {
