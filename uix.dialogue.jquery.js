@@ -7,7 +7,7 @@
     };
 
     $.dialogue = function(url, options) {
-        var id = "dialogue-" + guid();
+        var id = options.id || "dialogue-" + guid();
         var options = $.extend({
             autoResize: true,
             width: 'auto',
@@ -37,6 +37,6 @@
             options.complete.call($(this), response, status, xhr);
         });
 
-        return dialog;
+        return content;
     };
 }(jQuery));
