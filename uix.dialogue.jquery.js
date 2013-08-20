@@ -1,19 +1,14 @@
 ﻿(function ($) {
-    function guid() {
-        var s4 = function() {
-            return (((1 + Math.random()) * 0x10000) | 0).toString(16).substring(1);
-        };
-        return (s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4());
-    };
+    var counter = 1;
 
     $.dialogue = function(url, options) {
         var options = $.extend({
-            id: 'dialogue-' + guid(),
+            id: 'dialogue-' + counter++,
             autoResize: true,
             width: 'auto',
             height: 'auto',
             position: { my: 'center', at: 'center', of: window },
-            modal: true,
+            modal: false,
             dialogClass: 'uix-dialogue',
             title: 'Ajax Dialog',
             data: '',
@@ -30,7 +25,7 @@
         var content = $('<div id="' + options.id + '" class="' + options.dialogClass + '-content" style="display:none;"></div>').appendTo('body');
         content.load(url, options.data, function(response, status, xhr) {
             setTimeout(function() {
-				content.dialog(options);
+                content.dialog(options);
             }, 100);
             options.complete.call($(this), response, status, xhr);
         });
