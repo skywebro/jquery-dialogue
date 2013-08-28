@@ -3,19 +3,19 @@
 
     $.dialogue = function(url, options) {
         var options = $.extend({
-            id: 'dialogue-' + counter++,
+            id: 'uix-dialogue-' + counter++,
             autoResize: true,
             width: 'auto',
             height: 'auto',
             position: { my: 'center', at: 'center', of: window },
-            modal: false,
+            modal: true,
             dialogClass: 'uix-dialogue',
             title: 'Ajax Dialog',
             data: '',
             open: function(event, ui) {
             },
             close: function(event, ui) {
-                $(this).remove();
+                $(this).dialog('destroy').remove();
             },
             complete: function(response, status, xhr) {
                 /* A callback function that is executed when the request completes. */
@@ -26,8 +26,8 @@
         content.load(url, options.data, function(response, status, xhr) {
             setTimeout(function() {
                 content.dialog(options);
+                options.complete.call($(this), response, status, xhr);
             }, 100);
-            options.complete.call($(this), response, status, xhr);
         });
 
         return content;
